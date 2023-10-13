@@ -10,6 +10,10 @@ const {
   changePassword,
   sendOTP,
 } = require("../controllers/users/userControllers");
+const {
+  addReview,
+  getReviews,
+} = require("../controllers/users/userReviewController");
 
 router.post("/register", register);
 router.post("/validate", emailMobileExists);
@@ -19,4 +23,7 @@ router.get("/getUserDetails", getUserDetails);
 router.post("/updateUserDetails", updateUserDetails);
 router.post("/changePassword", changePassword);
 router.post("/sendOTP", sendOTP);
+router.post("/addReview", addReview);
+router.get("/getReviews", getReviews);
+
 module.exports = router;
