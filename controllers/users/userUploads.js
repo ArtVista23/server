@@ -7,7 +7,6 @@ const storage = new GridFsStorage({
   url: process.env.MONGO_URI,
   options: { useNewUrlParser: true, useUnifiedTopology: true },
   file: (req, file) => {
-    console.log("File", file.originalname, "user_id", req.body.user_id);
     return {
       filename: file.originalname,
       bucketName: "uploads", // Name of the MongoDB collection
@@ -20,7 +19,6 @@ const upload = multer({ storage });
 
 const uploadImages = async (req, res) => {
   const { user_id, title, info } = req.body;
-  console.log(req.files);
   try {
     await UserUpload.create({ user_id, title, info });
     res.status(201).json({ message: "Files uploaded successfully." });
