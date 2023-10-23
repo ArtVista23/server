@@ -173,6 +173,7 @@ const updateDetails = async (req, res) => {
     else if (type == "artifact") Schema = Artifacts;
     else if (type == "user") Schema = User;
     else if (type == "contact") Schema = Contact;
+    else if (type == "monument") Schema = Monuments;
     else Schema = UserUpload;
 
     const data = await Schema.findByIdAndUpdate({ _id: id }, { $set: changes });
