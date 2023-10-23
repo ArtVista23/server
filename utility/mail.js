@@ -26,7 +26,6 @@ const SendReply = (mailOptions, id, res) => {
       console.log(error);
       res.status(400).json({ message: "Something went wrong." });
     } else {
-      console.log(info);
       await Contact.deleteOne({ _id: id });
       res.status(200).json(true);
     }

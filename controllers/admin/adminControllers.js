@@ -9,6 +9,7 @@ const User = require("../../models/userModel");
 const { UserUpload } = require("../../models/userUploadModel");
 const mongoose = require("mongoose");
 const { SendReply } = require("../../utility/mail");
+const Contact = require("../../models/contactModel");
 
 let bucket;
 mongoose.connection.once("open", () => {
@@ -53,10 +54,11 @@ const getFeedbacks = async (req, res) => {
 
 const sendReply = async (req, res) => {
   const { id, email, reply } = req.body;
+  console.log(email);
   try {
     const options = {
-      from: email,
-      to: process.env.MAIL,
+      from: process.env.MAIL,
+      to: email,
       subject: "Response from ArtVista",
       html: `<p>${reply}</p>`,
     };
