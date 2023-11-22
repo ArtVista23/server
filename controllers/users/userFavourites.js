@@ -1,10 +1,11 @@
-const { default: mongoose } = require("mongoose");
+const { default: mongoose, model } = require("mongoose");
 const favSchema = require("../../models/favourites");
 const {
   Paintings,
   Sculptures,
   Artifacts,
   Demo,
+  Monuments,
 } = require("../../models/storageModel");
 
 const addToFavourites = async (req, res) => {
@@ -45,7 +46,6 @@ const getFavourites = async (req, res) => {
 
 const getAllFavourites = async (req, res) => {
   const userId = req.query.userId;
-
   try {
     const favList = await favSchema.find({ userId: userId });
     const modelIds = favList.map((item) => item.modelId);
@@ -59,11 +59,11 @@ const getAllFavourites = async (req, res) => {
 const getModel = async (req, res) => {
   const type = req.query.type;
   const modelId = new mongoose.Types.ObjectId(req.query.modelId);
-
   let Schema;
   if (type == "painting") Schema = Paintings;
   else if (type == "sculpture") Schema = Sculptures;
   else if (type == "artifact") Schema = Artifacts;
+  else if (type == "monument") Schema = Monuments;
   else Schema = Demo;
 
   try {
