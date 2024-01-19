@@ -7,7 +7,7 @@
     "node":"14.x",
   },
   "scripts": {
-    "server": "nodemon index.js",
+    "server": "node index.js",
     "build": "npm i"
   },
   "keywords": [],
